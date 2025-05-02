@@ -87,6 +87,11 @@
   text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #9b41ff, 0 0 82px #9b41ff, 0 0 92px #9b41ff, 0 0 102px #9b41ff, 0 0 151px #9b41ff;
 }
 
+.neon-green {
+  @apply text-blowketing-green font-bold;
+  text-shadow: 0 0 7px #7FFF00, 0 0 10px #7FFF00, 0 0 21px #7FFF00;
+}
+
 .neon-box {
   box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #ff71c6, 0 0 20px #ff71c6, 0 0 25px #ff71c6, 0 0 30px #ff71c6, 0 0 35px #ff71c6;
 }
@@ -98,4 +103,30 @@
 .dripping-text:after {
   content: '';
   @apply absolute bottom-[-8px] left-1/2 transform -translate-x-1/2 w-1 h-3 bg-blowketing-pink rounded-b-full animate-drip;
+}
+
+.anime-girl-bubble {
+  @apply relative;
+}
+
+.anime-girl-bubble:after {
+  content: '';
+  @apply absolute top-0 right-[-10px] w-4 h-4 bg-white transform rotate-45;
+}
+
+.dark-border-box {
+  @apply border border-gray-800 rounded-lg;
+}
+
+.button-glow {
+  animation: button-glow 2s infinite alternate;
+}
+
+@keyframes button-glow {
+  from {
+    box-shadow: 0 0 5px #ff71c6, 0 0 10px #ff71c6;
+  }
+  to {
+    box-shadow: 0 0 10px #ff71c6, 0 0 20px #ff71c6, 0 0 30px #ff71c6;
+  }
 }
