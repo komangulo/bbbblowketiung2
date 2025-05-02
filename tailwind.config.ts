@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -52,15 +53,12 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				sidebar: {
-					DEFAULT: 'hsl(var(--sidebar-background))',
-					foreground: 'hsl(var(--sidebar-foreground))',
-					primary: 'hsl(var(--sidebar-primary))',
-					'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-					accent: 'hsl(var(--sidebar-accent))',
-					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
-					border: 'hsl(var(--sidebar-border))',
-					ring: 'hsl(var(--sidebar-ring))'
+				blowketing: {
+					pink: '#ff71c6',
+					purple: '#9b41ff',
+					green: '#7FFF00',
+					black: '#000000',
+					red: '#FF0000'
 				}
 			},
 			borderRadius: {
@@ -84,12 +82,29 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'pulse-neon': {
+					'0%, 100%': { 
+						textShadow: '0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #ff71c6, 0 0 82px #ff71c6, 0 0 92px #ff71c6, 0 0 102px #ff71c6, 0 0 151px #ff71c6' 
+					},
+					'50%': { 
+						textShadow: '0 0 4px #fff, 0 0 11px #fff, 0 0 19px #fff, 0 0 25px #ff71c6, 0 0 40px #ff71c6, 0 0 50px #ff71c6, 0 0 70px #ff71c6, 0 0 100px #ff71c6' 
+					}
+				},
+				'drip': {
+					'0%': { transform: 'translateY(0)' },
+					'100%': { transform: 'translateY(5px)' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
-			}
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'pulse-neon': 'pulse-neon 2s ease-in-out infinite',
+				'drip': 'drip 0.5s ease-in-out infinite alternate'
+			},
+			fontFamily: {
+				'montserrat': ['Montserrat', 'sans-serif'],
+			},
 		}
 	},
 	plugins: [require("tailwindcss-animate")],
