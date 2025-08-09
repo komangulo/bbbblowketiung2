@@ -202,24 +202,39 @@ const Index: React.FC = () => {
           <h2 className="text-xl mb-4">BLOWKETING.COM</h2>
           <div className="flex flex-wrap justify-center gap-2 mb-4">
             <div className="w-[30%] aspect-[3/4] bg-gray-800 rounded overflow-hidden">
-              <img 
-                src="https://placehold.co/300x400/1a1a1a/fff" 
-                alt="Live model 1" 
+              <video 
+                src="/lovable-uploads/cf3263aad9bb5f88cb27b52b0696bc61.mp4" 
                 className="w-full h-full object-cover"
+                autoPlay
+                loop
+                muted
+                playsInline
+                controlsList="nodownload"
+                onLoadedData={(e) => e.currentTarget.play().catch(e => console.log('Autoplay prevented:', e))}
               />
             </div>
             <div className="w-[30%] aspect-[3/4] bg-gray-800 rounded overflow-hidden">
-              <img 
-                src="https://placehold.co/300x400/1a1a1a/fff" 
-                alt="Live model 2" 
+              <video 
+                src="/lovable-uploads/e18c1acc49c35be1a8625404043a6c30.mp4" 
                 className="w-full h-full object-cover"
+                autoPlay
+                loop
+                muted
+                playsInline
+                controlsList="nodownload"
+                onLoadedData={(e) => e.currentTarget.play().catch(e => console.log('Autoplay prevented:', e))}
               />
             </div>
             <div className="w-[30%] aspect-[3/4] bg-gray-800 rounded overflow-hidden">
-              <img 
-                src="https://placehold.co/300x400/1a1a1a/fff" 
-                alt="Live model 3" 
+              <video 
+                src="/lovable-uploads/e20a6f8e51fec73cc80b0f9db4f47ccb.mp4" 
                 className="w-full h-full object-cover"
+                autoPlay
+                loop
+                muted
+                playsInline
+                controlsList="nodownload"
+                onLoadedData={(e) => e.currentTarget.play().catch(e => console.log('Autoplay prevented:', e))}
               />
             </div>
           </div>
