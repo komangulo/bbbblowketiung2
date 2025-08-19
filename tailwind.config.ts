@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -52,17 +53,12 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				'luxury-gold': 'hsl(var(--luxury-gold))',
-				'elegant-gray': 'hsl(var(--elegant-gray))',
-				sidebar: {
-					DEFAULT: 'hsl(var(--sidebar-background))',
-					foreground: 'hsl(var(--sidebar-foreground))',
-					primary: 'hsl(var(--sidebar-primary))',
-					'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-					accent: 'hsl(var(--sidebar-accent))',
-					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
-					border: 'hsl(var(--sidebar-border))',
-					ring: 'hsl(var(--sidebar-ring))'
+				blowketing: {
+					pink: '#ff71c6',
+					purple: '#9b41ff',
+					green: '#7FFF00',
+					black: '#000000',
+					red: '#FF0000'
 				}
 			},
 			borderRadius: {
@@ -86,57 +82,29 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'pulse-neon': {
+					'0%, 100%': { 
+						textShadow: '0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #ff71c6, 0 0 82px #ff71c6, 0 0 92px #ff71c6, 0 0 102px #ff71c6, 0 0 151px #ff71c6' 
+					},
+					'50%': { 
+						textShadow: '0 0 4px #fff, 0 0 11px #fff, 0 0 19px #fff, 0 0 25px #ff71c6, 0 0 40px #ff71c6, 0 0 50px #ff71c6, 0 0 70px #ff71c6, 0 0 100px #ff71c6' 
+					}
+				},
+				'drip': {
+					'0%': { transform: 'translateY(0)' },
+					'100%': { transform: 'translateY(5px)' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
-				'fade-in': 'fadeIn 0.6s ease-out',
-				'slide-up': 'slideUp 0.8s ease-out',
-				'elegant-pulse': 'elegantPulse 2s ease-in-out infinite'
+				'pulse-neon': 'pulse-neon 2s ease-in-out infinite',
+				'drip': 'drip 0.5s ease-in-out infinite alternate'
 			},
-			keyframes: {
-				...{
-					'accordion-down': {
-						from: {
-							height: '0'
-						},
-						to: {
-							height: 'var(--radix-accordion-content-height)'
-						}
-					},
-					'accordion-up': {
-						from: {
-							height: 'var(--radix-accordion-content-height)'
-						},
-						to: {
-							height: '0'
-						}
-					}
-				},
-				fadeIn: {
-					'0%': { opacity: '0', transform: 'translateY(20px)' },
-					'100%': { opacity: '1', transform: 'translateY(0)' }
-				},
-				slideUp: {
-					'0%': { opacity: '0', transform: 'translateY(40px)' },
-					'100%': { opacity: '1', transform: 'translateY(0)' }
-				},
-				elegantPulse: {
-					'0%, 100%': { transform: 'scale(1)', opacity: '1' },
-					'50%': { transform: 'scale(1.05)', opacity: '0.8' }
-				}
+			fontFamily: {
+				'montserrat': ['Montserrat', 'sans-serif'],
 			},
-			backgroundImage: {
-				'gradient-hero': 'var(--gradient-hero)',
-				'gradient-accent': 'var(--gradient-accent)',
-				'gradient-subtle': 'var(--gradient-subtle)'
-			},
-			boxShadow: {
-				'elegant': 'var(--shadow-elegant)',
-				'luxury': 'var(--shadow-luxury)',
-				'card': 'var(--shadow-card)'
-			}
 		}
 	},
 	plugins: [require("tailwindcss-animate")],
