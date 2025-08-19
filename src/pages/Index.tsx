@@ -1,288 +1,362 @@
-import React from 'react';
-import { X, Youtube } from 'lucide-react';
+import React, { useState } from 'react';
+import { Mail, Heart, Globe, Gift, Plane, Lock } from 'lucide-react';
 import Logo from '@/components/Logo';
-import SectionTitle from '@/components/SectionTitle';
-import CallToAction from '@/components/CallToAction';
-import SocialIcon from '@/components/SocialIcon';
-
-// Imagen subida y disponible en 'public/lovable-uploads/e11caf1a-2a18-4996-9c16-32314831ce8a.png'
-const HEADER_IMAGE = '/lovable-uploads/e11caf1a-2a18-4996-9c16-32314831ce8a.png';
 
 const Index: React.FC = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    age: '',
+    description: '',
+    contact: ''
+  });
+  const [status, setStatus] = useState('');
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus('Enviando...');
+    
+    try {
+      const response = await fetch('https://formspree.io/f/xnnzykpg', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          age: formData.age,
+          description: formData.description,
+          contact: formData.contact,
+          _subject: 'Nuevo mensaje de contacto',
+          _format: 'plain',
+          _language: 'es',
+        }),
+      });
+
+      if (response.ok) {
+        setStatus('¡Mensaje enviado con éxito! Pronto me pondré en contacto contigo.');
+        setFormData({
+          name: '',
+          age: '',
+          description: '',
+          contact: '',
+        });
+      } else {
+        throw new Error('Error al enviar el mensaje');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      setStatus('Hubo un error al enviar el mensaje. Por favor, inténtalo de nuevo más tarde.');
+    }
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
   return (
-    <div className="min-h-screen bg-black text-white flex flex-col items-center max-w-6xl w-full mx-auto px-2">
-      <header className="w-full flex flex-col items-center pt-6 pb-2">
-        <Logo />
-        {/* Imagen decorativa extra-top-image3.png ELIMINADA DEL HEADER */}
-      </header>
-      
-      <main className="w-full px-0 pb-8 flex flex-col items-center">
-        {/* Header Image Section */}
-        <section className="w-full mb-6 text-center">
-          <img
-            src="/lovable-uploads/blowketing-anime-girl.png"
-            alt="BlowKETING Anime Girl"
-            className="mx-auto w-full max-w-md object-contain"
-          />
-        </section>
+    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white">
+      {/* Hero Section */}
+      <header className="relative h-screen flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0 bg-black/60 z-10"></div>
+        <div className="absolute inset-0 bg-[url('/lovable-uploads/luxury-background.jpg')] bg-cover bg-center opacity-30"></div>
         
-        {/* BJ X MKT Section */}
-        <section className="w-full mb-10 text-center">
-          <h2
-            className="mb-4 text-5xl"
-            style={{
-              fontFamily: 'Oswald, Montserrat, Poppins, Arial, sans-serif',
-              fontWeight: 700,
-              fontSize: '4rem',
-              textTransform: 'uppercase',
-              color: '#fff',
-              textShadow: '0 0 16px #fff, 0 0 32px #fff, 0 0 48px #fff',
-              letterSpacing: '0.08em',
-              marginBottom: '1rem',
-              marginTop: '0.5rem',
-              lineHeight: 1.1
-            }}
-          >
-            BJ X MKT
-          </h2>
-          
-          <p className="max-w-2xl mx-auto mb-6 text-gray-300" style={{ fontSize: '26.67px', lineHeight: '37px' }}>
-            Filmamos a las modelos en su mejor momento en Madrid, capturando deliciosos Blo***b con caritas adorables y expresiones cautivadoras que llaman la atención. Este contenido se convierte en una poderosa herramienta para promocionar su presencia en plataformas de contenido, ya que en Blowketing no mostramos sus partes íntimas; para obtener contenido sin censura tienes que entrar exclusivamente en la plataforma de la modelo y/o hablar directamente con ella por chat.
+        <div className="relative z-20 text-center px-4 max-w-4xl mx-auto">
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-wide">
+            <span className="text-gold-400">Sugar Daddy Madrid</span>
+          </h1>
+          <p className="text-xl md:text-2xl mb-8 text-gray-300">
+            Generosidad, Experiencias y Compañía Exclusiva
           </p>
-          
-          <div className="flex justify-center items-center space-x-2 mb-4">
-            <div className="h-px bg-blowketing-pink flex-grow max-w-[100px]"></div>
-            <span className="text-blowketing-pink font-bold px-2">MADRID</span>
-            <div className="h-px bg-blowketing-pink flex-grow max-w-[100px]"></div>
-          </div>
-        </section>
-        
-        {/* ManyVids Section */}
-        <section className="w-full mb-10 text-center">
-          <div className="mb-2">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#ffffff" className="inline-block">
-              <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm0 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm-2 8c0-1.105.896-2 2-2s2 .895 2 2c0 1.105-.896 2-2 2s-2-.895-2-2zm-3.5 6c-.828 0-1.5-.671-1.5-1.5s.672-1.5 1.5-1.5 1.5.671 1.5 1.5-.672 1.5-1.5 1.5zm7 0c-.828 0-1.5-.671-1.5-1.5s.672-1.5 1.5-1.5 1.5.671 1.5 1.5-.672 1.5-1.5 1.5zm3.5 0c-.828 0-1.5-.671-1.5-1.5s.672-1.5 1.5-1.5 1.5.671 1.5 1.5-.672 1.5-1.5 1.5z"/>
-            </svg>
-            <h2 className="text-2xl font-bold uppercase mt-2 mb-1">MANYVIDS</h2>
-            <p className="text-sm text-gray-400 mb-4">PREMIUM VIDEOS</p>
-          </div>
-          <CallToAction link="https://www.manyvids.com" className="mb-8">
-            EXPLORAR AHORA
-          </CallToAction>
-          {/* Imagen decorativa extra-top-image.png justo debajo del botón */}
-          <div className="relative my-6 w-[33.6rem] md:w-[67.2rem] mx-auto">
-            <img
-              src="/lovable-uploads/extra-top-image.png"
-              alt="Decoración rayo"
-              className="w-full"
-            />
-            {/* Rayo.gif centrado absolutamente */}
-            <img
-              src="/lovable-uploads/rayo.gif"
-              alt="Rayo animado"
-              className="absolute left-1/2 top-1/2"
-              style={{ transform: 'translate(-50%, -50%) rotate(-90deg)', zIndex: 10, width: '20%', height: 'auto', pointerEvents: 'none' }}
-            />
-          </div>
-        </section>
-        
-        {/* Social Media Section */}
-        <section className="w-full mb-10 text-center">
-          <div className="flex justify-center items-center mb-2">
-            <div className="h-px bg-white flex-grow max-w-[80px]"></div>
-            <span className="text-white px-4 text-xs">TAMBIÉN EN</span>
-            <div className="h-px bg-white flex-grow max-w-[80px]"></div>
-          </div>
-          
-          <div className="flex justify-center space-x-4 mb-8">
-            <SocialIcon 
-              icon="https://cdn-icons-png.flaticon.com/128/2111/2111646.png" 
-              link="https://t.me/" 
-              alt="Telegram"
-              bgColor="bg-blue-500"
-            />
-            <SocialIcon 
-              icon="https://cdn-icons-png.flaticon.com/128/3670/3670157.png" 
-              link="https://www.reddit.com" 
-              alt="Reddit"
-              bgColor="bg-orange-600"
-            />
-          </div>
-        </section>
-        
-        {/* All Models Section */}
-        <section className="w-full mb-10 text-center">
-          <h2 className="text-3xl font-bold uppercase mt-2 mb-4">Encuentra aquí las modelos TOP y más activas</h2>
-          <div className="flex justify-center my-6">
-            <a href="/modelos" className="transition-transform hover:scale-105 hover:shadow-lg">
-              <img
-                src="/lovable-uploads/modelos-boton.png"
-                alt="Ver más modelos"
-                className="w-[72rem] h-auto rounded-lg cursor-pointer"
-              />
-            </a>
-          </div>
-        </section>
-        
-        {/* Follow on X Section */}
-        <section className="w-full mb-10 text-center dark-border-box p-4">
-          <div className="flex justify-center items-center flex-col">
-            <img 
-              src="https://placehold.co/100x100/000/fff?text=X"
-              alt="X profile"
-              className="w-20 h-20 mb-2 rounded-lg"
-            />
-            <p className="font-semibold mb-1">FOLLOW US ON</p>
-            <X size={20} className="text-white mb-2" />
-          </div>
-        </section>
-        
-        {/* Anime Girl Section */}
-        <section className="w-full mb-10 flex justify-center">
-          <div className="relative flex items-center justify-center" style={{ width: '56rem', height: '56rem' }}>
-            <img
-              src="/lovable-uploads/anime-girl.png"
-              alt="Anime Girl"
-              className="w-full h-full object-contain"
-              style={{ maxWidth: '56rem', maxHeight: '56rem' }}
-            />
-            <img
-              src="/lovable-uploads/onlyfans-mobile.png"
-              alt=""
-              className="absolute top-1/2 left-1/2 w-40 h-auto pointer-events-none"
-              style={{ transform: 'translate(-50%, -50%)', zIndex: 10 }}
-              draggable={false}
-            />
-          </div>
-        </section>
-        
-        {/* Model of the Year */}
-        <section className="w-full mb-10 text-center">
-          <h2 className="text-3xl font-extrabold uppercase mb-6">MODEL OF THE YEAR</h2>
-          <div className="mb-6 flex justify-center items-center">
-            <div className="relative" style={{ width: 260, height: 260 }}>
-              <img
-                src="/lovable-uploads/insta-circle.png"
-                alt="Marco Instagram"
-                className="w-full h-full absolute top-0 left-0"
-                style={{ zIndex: 1 }}
-                draggable={false}
-              />
-              <img
-                src="/lovable-uploads/model-of-year.png"
-                alt="Model of the Year"
-                className="w-[200px] h-[200px] rounded-full object-cover absolute top-1/2 left-1/2"
-                style={{ transform: 'translate(-50%, -50%)', zIndex: 2, border: '6px solid white' }}
-                draggable={false}
-              />
-            </div>
-          </div>
-          <p className="font-extrabold mt-2 text-2xl tracking-wide">LAUUMIAU</p>
-          <CallToAction link="#" className="mb-8 button-glow text-xl py-4 px-10">
-            SEGUIR
-          </CallToAction>
-          <p className="text-lg text-gray-200 max-w-3xl mx-auto mb-8" style={{ fontSize: '26.67px', lineHeight: '37px' }}>
-            Suscríbete al BeFanz de nuestras modelos y accede a todo el contenido ilimitado que tienen para ofrecerte. Además, disfruta de la posibilidad de interactuar con ellas de forma privada para aún más sorpresas y contenido exclusivo.
+          <p className="text-lg md:text-xl mb-12 max-w-2xl mx-auto leading-relaxed">
+            Para mujeres jóvenes que buscan un hombre maduro (36 años), exitoso y generoso que valore tu compañía y esté dispuesto a ofrecerte un estilo de vida de lujo junto a alguien dominante y experimentado.
           </p>
-        </section>
-        
-        {/* BEFANZ Section */}
-        <section className="w-full mb-10 text-center">
-          <h2 className="text-2xl font-extrabold text-blowketing-pink mb-4">BEFANZ.COM</h2>
-          <p className="text-lg text-gray-200 max-w-3xl mx-auto mb-6" style={{ fontSize: '26.67px', lineHeight: '37px' }}>
-            Encuentra todo el contenido exclusivo solo para fans y suscriptores. Somos la agencia número uno en Madrid para creadores de contenido.
-          </p>
-          <CallToAction link="#" className="mb-8">
-            VISITAR AHORA
-          </CallToAction>
-        </section>
-        
-        {/* Live on Kick */}
-        <section className="w-full mb-10 text-center">
-          <h2 className="text-xl mb-4">BLOWKETING.COM</h2>
-          <div className="flex flex-wrap justify-center gap-2 mb-4">
-            <div className="w-[30%] aspect-[3/4] bg-gray-800 rounded overflow-hidden">
-              <video 
-                src="/lovable-uploads/cf3263aad9bb5f88cb27b52b0696bc61.mp4" 
-                className="w-full h-full object-cover"
-                autoPlay
-                loop
-                muted
-                playsInline
-                controlsList="nodownload"
-                onLoadedData={(e) => e.currentTarget.play().catch(e => console.log('Autoplay prevented:', e))}
-              />
-            </div>
-            <div className="w-[30%] aspect-[3/4] bg-gray-800 rounded overflow-hidden">
-              <video 
-                src="/lovable-uploads/e18c1acc49c35be1a8625404043a6c30.mp4" 
-                className="w-full h-full object-cover"
-                autoPlay
-                loop
-                muted
-                playsInline
-                controlsList="nodownload"
-                onLoadedData={(e) => e.currentTarget.play().catch(e => console.log('Autoplay prevented:', e))}
-              />
-            </div>
-            <div className="w-[30%] aspect-[3/4] bg-gray-800 rounded overflow-hidden">
-              <video 
-                src="/lovable-uploads/e20a6f8e51fec73cc80b0f9db4f47ccb.mp4" 
-                className="w-full h-full object-cover"
-                autoPlay
-                loop
-                muted
-                playsInline
-                controlsList="nodownload"
-                onLoadedData={(e) => e.currentTarget.play().catch(e => console.log('Autoplay prevented:', e))}
-              />
-            </div>
-          </div>
-          <p className="text-lg font-semibold mb-2">LIVE ON</p>
-          <h3 className="text-3xl neon-green font-extrabold mb-8">KICK</h3>
-        </section>
-        
-        {/* Casting Section */}
-        <section className="w-full mb-10 text-center">
-          <h2 className="text-xl font-bold uppercase mb-2" style={{ fontSize: '26.67px', lineHeight: '37px' }}>CASTING</h2>
-          <h3 className="text-lg mb-4 text-gray-300" style={{ fontSize: '26.67px', lineHeight: '37px' }}>
-            ¿ERES CREADORA DE CONTENIDO? CONTACTANOS
-          </h3>
-          <a
-            href="https://form.jotform.com/251215422290345"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block bg-blowketing-pink text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-pink-600 transition mb-8 text-lg"
-          >
-            CONTACTAR
-          </a>
-        </section>
-        
-        {/* Stripchat Section */}
-        <section className="w-full mb-10 text-center">
-          <p className="text-sm text-gray-400 mb-1">SOMETIMES WE ARE LIVE ON</p>
           <a 
-            href="https://stripchat.com" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="text-lg font-bold text-cyan-400 hover:text-cyan-300 transition-colors"
+            href="#contacto" 
+            className="bg-gold-500 hover:bg-gold-600 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 inline-flex items-center"
           >
-            stripchat.com
-          </a>
-        </section>
-      </main>
-      
-      <footer className="w-full py-6 text-center text-xs text-gray-400 border-t border-gray-800">
-        <div className="flex justify-center space-x-4 mb-4">
-          <a href="#" className="hover:text-white transition-colors">
-            <X size={18} />
-          </a>
-          <a href="#" className="hover:text-white transition-colors">
-            <Youtube size={18} />
+            <Mail className="mr-2" size={20} /> Contáctame
           </a>
         </div>
-        <p>Blow4KETING Madrid © 2025</p>
-        <p className="mt-1">Solo para mayores de 18 años.</p>
+      </header>
+
+      {/* About Me Section */}
+      <section className="py-20 px-4 max-w-5xl mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-bold mb-4">Sobre Mí</h2>
+          <div className="w-24 h-1 bg-gold-500 mx-auto mb-8"></div>
+        </div>
+
+        <div className="flex flex-col md:flex-row items-center gap-12">
+          <div className="md:w-1/3">
+            <div className="rounded-full overflow-hidden border-4 border-gold-500 w-64 h-64 mx-auto">
+              <img 
+                src="/lovable-uploads/msd681f9ad7b6f843.87503140.jpg" 
+                alt="Perfil"
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div>
+          <div className="md:w-2/3">
+            <h3 className="text-2xl font-semibold mb-4">Tu Sugar Daddy en Madrid</h3>
+            <p className="text-gray-300 mb-6 leading-relaxed">
+              Soy un caballero maduro (36 años), exitoso y generoso que busca relacionarse con una joven encantadora. 
+              Con una carrera exitosa y una vida estable, estoy en la posición de ofrecerte un estilo de vida excepcional a cambio de tu compañía y afecto.
+            </p>
+            <p className="text-gray-300 mb-6 leading-relaxed">
+              Disfruto de viajes de lujo, cenas en restaurantes exclusivos y eventos de alta sociedad. Soy alguien experimentado, dominante y con mucha experiencia. 
+              Busco una chica especial con quien compartir estas experiencias a cambio de su tiempo y compañía.
+            </p>
+            <div className="flex flex-wrap gap-4 mt-8">
+              <span className="bg-gray-800 text-gold-400 px-4 py-2 rounded-full text-sm flex items-center">
+                <Plane className="mr-2" size={16} /> Viajes Exclusivos
+              </span>
+              <span className="bg-gray-800 text-gold-400 px-4 py-2 rounded-full text-sm flex items-center">
+                <Gift className="mr-2" size={16} /> Estilo de Vida de Lujo
+              </span>
+              <span className="bg-gray-800 text-gold-400 px-4 py-2 rounded-full text-sm flex items-center">
+                <Lock className="mr-2" size={16} /> Discreción Garantizada
+              </span>
+              <span className="bg-gray-800 text-gold-400 px-4 py-2 rounded-full text-sm flex items-center">
+                <span className="mr-2">👑</span> Dominante
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* What I Offer Section */}
+      <section className="py-20 bg-gray-900">
+        <div className="max-w-5xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-4">Lo Que Ofrezco</h2>
+            <div className="w-24 h-1 bg-gold-500 mx-auto mb-8"></div>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              Una relación donde disfrutarás de experiencias de lujo junto a un hombre exitoso, experimentado y dominante
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                icon: <Plane size={40} className="text-gold-500 mb-4" />,
+                title: 'Estilo de Vida Premium',
+                description: 'Viajes de lujo, cenas en restaurantes con estrellas Michelin y acceso a eventos exclusivos de alto nivel.'
+              },
+              {
+                icon: <Gift size={40} className="text-gold-500 mb-4" />,
+                title: 'Relación Dominante',
+                description: 'Una relación donde disfrutas de ser dominante y de ser completamente sometida y controlada por un hombre con más de 14 años de experiencia en este aspecto.'
+              },
+              {
+                icon: <Heart size={40} className="text-gold-500 mb-4" />,
+                title: 'Compañía Exclusiva',
+                description: 'Encuentros discretos donde serás la única prioridad, con atención y detalles personalizados.'
+              },
+              {
+                icon: <Globe size={40} className="text-gold-500 mb-4" />,
+                title: 'Conexiones Exclusivas',
+                description: 'Acceso a una red de contactos influyentes que pueden abrirte puertas en el mundo profesional.'
+              },
+              {
+                icon: <Lock size={40} className="text-gold-500 mb-4" />,
+                title: 'Discreción Total',
+                description: 'Confidencialidad garantizada en todo momento, con respeto absoluto por tu privacidad.'
+              },
+              {
+                icon: <Mail size={40} className="text-gold-500 mb-4" />,
+                title: 'Términos Claros',
+                description: 'Acuerdos mutuos claros desde el inicio, con límites y expectativas bien definidos.'
+              }
+            ].map((item, index) => (
+              <div key={index} className="bg-gray-800 p-8 rounded-lg hover:transform hover:scale-105 transition duration-300">
+                <div className="text-center">
+                  {item.icon}
+                  <h3 className="text-xl font-semibold mb-3">{item.title}</h3>
+                  <p className="text-gray-300">{item.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Philosophy Section */}
+      <section className="py-20 px-4 bg-black">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-4">Mi Filosofía</h2>
+            <div className="w-24 h-1 bg-gold-500 mx-auto mb-8"></div>
+          </div>
+
+          <div className="space-y-12">
+            <div className="bg-gray-900 p-8 rounded-xl">
+              <h3 className="text-2xl font-semibold text-gold-400 mb-4">El Lujo y el Deseo de Pertenencia</h3>
+              <p className="text-gray-300 leading-relaxed">
+                Bienvenida a un mundo donde el lujo y el deseo se entrelazan. Como tu sugar daddy en Madrid, no solo te ofrezco un estilo de vida de lujo con viajes exclusivos y alta cocina, sino que también te invito a explorar una conexión más profunda y significativa.
+              </p>
+              <p className="text-gray-300 leading-relaxed mt-4">
+                Si eres una chica joven de Madrid que busca ser mimada y consentida, y a la vez anhelas el control y la seguridad de ser la posesión y pertenencia más preciada de alguien y disfrutar de ser sometida y controlada, has llegado al lugar correcto.
+              </p>
+              <p className="text-gray-300 leading-relaxed mt-4">
+                Aquí, es solo el inicio donde la confianza y la devoción lo son todo.
+              </p>
+              <p className="text-gold-400 font-semibold mt-4">
+                Háblame.
+              </p>
+            </div>
+
+            <div className="bg-gray-900 p-8 rounded-xl">
+              <h3 className="text-2xl font-semibold text-gold-400 mb-4">La Conexión Mental y la Sumisión Deseada</h3>
+              <p className="text-gray-300 leading-relaxed">
+                En mi mundo, una relación sugar daddy es más que un simple acuerdo; es una unión de mentes y deseos. Busco una sugar baby en Madrid que entienda la belleza de la sumisión y el poder de la dominación.
+              </p>
+              <p className="text-gray-300 leading-relaxed mt-4">
+                Si deseas ser mi posesión, mi pertenencia más preciada, que jamás será abandonada, te ofrezco la protección y seguridad que anhelas.
+              </p>
+              <p className="text-gray-300 leading-relaxed mt-4">
+                Disfrutaremos de una relación discreta donde la confianza y la comunicación es absoluta.
+              </p>
+              <p className="text-gray-300 leading-relaxed mt-4">
+                Aquí, el control y la intimidad mental son tan importantes como el lujo y la exclusividad.
+              </p>
+              <p className="text-gray-300 leading-relaxed mt-4">
+                Soy un hombre exitoso, maduro y seguro de lo que quiero, y te ofrezco ser tu mentor, tu caballero, y también tu Dueño.
+              </p>
+            </div>
+
+            <div className="bg-gray-900 p-8 rounded-xl">
+              <h3 className="text-2xl font-semibold text-gold-400 mb-4">Una Relación Única y Absoluta</h3>
+              <p className="text-gray-300 leading-relaxed">
+                Si eres una chica joven y te atreves a soñar, esta es una invitación a ir más allá de lo superficial. Aquí, tu búsqueda de un sugar daddy en Madrid culmina en una relación en la que te sentirás única y especial.
+              </p>
+              <p className="text-gray-300 leading-relaxed mt-4">
+                Si te atrae la idea de la posesión y la entrega total, y si deseas que alguien tome las riendas y te guíe, te ofrezco un mundo donde tus ambiciones y metas se cumplen mientras te sientes completamente a salvo.
+              </p>
+              <p className="text-gray-300 leading-relaxed mt-4">
+                Esta relación es una experiencia donde la sumisión voluntaria es el camino hacia la libertad y el placer más profundos.
+              </p>
+              <p className="text-gray-300 leading-relaxed mt-4">
+                Ven y descubre el beneficio de ser una sugar baby que se siente completa y absolutamente tuya.
+              </p>
+              <p className="text-gold-400 font-semibold mt-4">
+                Atrévete a dar el paso.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contacto" className="py-20 px-4">
+        <div className="max-w-3xl mx-auto bg-gray-900 rounded-xl p-8 shadow-2xl">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold mb-4">Contáctame</h2>
+            <div className="w-24 h-1 bg-gold-500 mx-auto mb-4"></div>
+            <p className="text-gray-300">
+              Si buscas una relación de respeto mutuo, generosidad y experiencias inolvidables, 
+              estaré encantado de conocerte.
+            </p>
+          </div>
+
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">Tu Nombre</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-gold-500 focus:border-transparent"
+                  placeholder="Tu nombre"
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor="age" className="block text-sm font-medium text-gray-300 mb-1">Tu Edad</label>
+                <input
+                  type="number"
+                  id="age"
+                  name="age"
+                  value={formData.age}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-gold-500 focus:border-transparent"
+                  placeholder="Tu edad"
+                  min="18"
+                  required
+                />
+              </div>
+            </div>
+            
+            <div>
+              <label htmlFor="description" className="block text-sm font-medium text-gray-300 mb-1">Cuéntame sobre ti</label>
+              <textarea
+                id="description"
+                name="description"
+                value={formData.description}
+                onChange={handleChange}
+                rows={4}
+                className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-gold-500 focus:border-transparent"
+                placeholder="¿Qué te hace única? ¿Qué buscas en esta relación?"
+                required
+              ></textarea>
+            </div>
+            
+            <div>
+              <label htmlFor="contact" className="block text-sm font-medium text-gray-300 mb-1">Cómo contactarte</label>
+              <input
+                type="text"
+                id="contact"
+                name="contact"
+                value={formData.contact}
+                onChange={handleChange}
+                className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-gold-500 focus:border-transparent"
+                placeholder="Teléfono, email o usuario de Instagram"
+                required
+              />
+            </div>
+            
+            <div className="pt-4">
+              <button
+                type="submit"
+                className="w-full bg-gold-500 hover:bg-gold-600 text-white font-bold py-3 px-6 rounded-lg transition duration-300 flex items-center justify-center"
+              >
+                <Mail className="mr-2" size={20} /> Enviar Mensaje
+              </button>
+            </div>
+            
+            {status && (
+              <div className={`p-4 rounded-lg text-center ${status.includes('éxito') ? 'bg-green-900/30 text-green-300' : status.includes('error') ? 'bg-red-900/30 text-red-300' : 'bg-blue-900/30 text-blue-300'}`}>
+                {status}
+              </div>
+            )}
+            <p className="text-xs text-gray-500 text-center mt-4">
+              Tu privacidad es importante. Toda la información compartida será tratada con la máxima confidencialidad.
+            </p>
+          </form>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 py-8 text-center text-gray-400 text-sm">
+        <div className="max-w-5xl mx-auto px-4">
+          <div className="mb-4">
+            <Logo />
+          </div>
+          <p>© {new Date().getFullYear()} Conexión Madrid. Todos los derechos reservados.</p>
+          <div className="mt-4 space-x-4">
+            <a href="#" className="hover:text-gold-400 transition">Términos de Servicio</a>
+            <span>•</span>
+            <a href="#" className="hover:text-gold-400 transition">Política de Privacidad</a>
+            <span>•</span>
+            <a href="#" className="hover:text-gold-400 transition">Contacto</a>
+          </div>
+        </div>
       </footer>
     </div>
   );

@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -8,26 +9,26 @@
     --background: 0 0% 0%;
     --foreground: 0 0% 100%;
 
-    --card: 0 0% 0%;
+    --card: 0 0% 7%;
     --card-foreground: 0 0% 100%;
 
-    --popover: 0 0% 0%;
+    --popover: 0 0% 7%;
     --popover-foreground: 0 0% 100%;
 
-    --primary: 325 100% 72%;
+    --primary: 46 100% 52%;
     --primary-foreground: 0 0% 0%;
 
-    --secondary: 267 100% 63%;
+    --secondary: 0 0% 15%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 0 0% 20%;
-    --muted-foreground: 0 0% 60%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 65%;
 
-    --accent: 325 100% 72%;
+    --accent: 46 100% 52%;
     --accent-foreground: 0 0% 0%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
 
     --border: 0 0% 20%;
     --input: 0 0% 20%;
@@ -69,26 +70,31 @@
 
 @layer base {
   * {
-    @apply border-border;
+    border-color: hsl(var(--border));
   }
 
   body {
-    @apply bg-black text-foreground font-montserrat;
+    background-color: #000;
+  color: var(--foreground);
+  font-family: 'Montserrat', sans-serif;
   }
 }
 
 .neon-text {
-  @apply text-white font-bold;
+  color: white;
+  font-weight: 700;
   text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #ff71c6, 0 0 82px #ff71c6, 0 0 92px #ff71c6, 0 0 102px #ff71c6, 0 0 151px #ff71c6;
 }
 
 .neon-purple {
-  @apply text-white font-bold;
+  color: white;
+  font-weight: 700;
   text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #9b41ff, 0 0 82px #9b41ff, 0 0 92px #9b41ff, 0 0 102px #9b41ff, 0 0 151px #9b41ff;
 }
 
 .neon-green {
-  @apply text-blowketing-green font-bold;
+  color: #7FFF00;
+  font-weight: 700;
   text-shadow: 0 0 7px #7FFF00, 0 0 10px #7FFF00, 0 0 21px #7FFF00;
 }
 
@@ -97,25 +103,41 @@
 }
 
 .dripping-text {
-  @apply relative;
+  position: relative;
 }
 
 .dripping-text:after {
   content: '';
-  @apply absolute bottom-[-8px] left-1/2 transform -translate-x-1/2 w-1 h-3 bg-blowketing-pink rounded-b-full animate-drip;
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0.25rem;
+  height: 0.75rem;
+  background-color: #ff71c6;
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  animation: drip 1s infinite alternate;
 }
 
 .anime-girl-bubble {
-  @apply relative;
+  position: relative;
 }
 
 .anime-girl-bubble:after {
   content: '';
-  @apply absolute top-0 right-[-10px] w-4 h-4 bg-white transform rotate-45;
+  position: absolute;
+  top: 0;
+  right: -10px;
+  width: 1rem;
+  height: 1rem;
+  background-color: white;
+  transform: rotate(45deg);
 }
 
 .dark-border-box {
-  @apply border border-gray-800 rounded-lg;
+  border: 1px solid #1f2937;
+  border-radius: 0.5rem;
 }
 
 .button-glow {
