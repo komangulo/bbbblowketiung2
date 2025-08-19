@@ -1,154 +1,133 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
 @layer base {
   :root {
-    --background: 0 0% 0%;
-    --foreground: 0 0% 100%;
+    --background: 0 0% 100%;
+    --foreground: 0 0% 10%;
 
-    --card: 0 0% 7%;
-    --card-foreground: 0 0% 100%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 10%;
 
-    --popover: 0 0% 7%;
-    --popover-foreground: 0 0% 100%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
 
-    --primary: 46 100% 52%;
-    --primary-foreground: 0 0% 0%;
+    --primary: 0 0% 15%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 0 0% 15%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 10%;
 
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 65%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 30%;
 
-    --accent: 46 100% 52%;
-    --accent-foreground: 0 0% 0%;
+    --accent: 43 100% 50%;
+    --accent-foreground: 0 0% 10%;
 
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 20%;
-    --input: 0 0% 20%;
-    --ring: 325 100% 72%;
+    --border: 210 10% 90%;
+    --input: 210 10% 90%;
+    --ring: 210 10% 25%;
+
+    /* Custom design tokens */
+    --luxury-gold: 43 100% 68%;
+    --luxury-gold-light: 43 100% 85%;
+    --elegant-gray: 210 10% 25%;
+    --elegant-gray-light: 210 10% 35%;
+    --elegant-gray-dark: 210 10% 15%;
+    
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(var(--elegant-gray)), hsl(var(--elegant-gray-light)));
+    --gradient-accent: linear-gradient(135deg, hsl(var(--luxury-gold)), hsl(var(--luxury-gold-light)));
+    --gradient-subtle: linear-gradient(180deg, hsl(0 0% 100%), hsl(210 10% 98%));
+    
+    /* Shadows */
+    --shadow-elegant: 0 20px 60px -10px hsl(var(--elegant-gray) / 0.15);
+    --shadow-luxury: 0 10px 40px -10px hsl(var(--luxury-gold) / 0.25);
+    --shadow-card: 0 4px 20px -4px hsl(210 10% 15% / 0.08);
+    
+    /* Animations */
+    --transition-elegant: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
     --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
   .dark {
-    --background: 0 0% 0%;
-    --foreground: 0 0% 100%;
+    --background: 210 10% 8%;
+    --foreground: 0 0% 98%;
 
-    --card: 0 0% 0%;
-    --card-foreground: 0 0% 100%;
+    --card: 210 10% 10%;
+    --card-foreground: 0 0% 98%;
 
-    --popover: 0 0% 0%;
-    --popover-foreground: 0 0% 100%;
+    --popover: 210 10% 10%;
+    --popover-foreground: 0 0% 98%;
 
-    --primary: 325 100% 72%;
-    --primary-foreground: 0 0% 0%;
+    --primary: 210 10% 85%;
+    --primary-foreground: 210 10% 8%;
 
-    --secondary: 267 100% 63%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 210 10% 15%;
+    --secondary-foreground: 0 0% 98%;
 
-    --muted: 0 0% 20%;
-    --muted-foreground: 0 0% 60%;
+    --muted: 210 10% 15%;
+    --muted-foreground: 210 10% 65%;
 
-    --accent: 325 100% 72%;
-    --accent-foreground: 0 0% 0%;
+    --accent: 43 100% 68%;
+    --accent-foreground: 210 10% 8%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 50%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 20%;
-    --input: 0 0% 20%;
-    --ring: 325 100% 72%;
+    --border: 210 10% 20%;
+    --input: 210 10% 20%;
+    --ring: 210 10% 85%;
+
+    /* Dark mode adjustments */
+    --elegant-gray: 210 10% 85%;
+    --elegant-gray-light: 210 10% 95%;
+    --elegant-gray-dark: 210 10% 75%;
+    --gradient-hero: linear-gradient(135deg, hsl(var(--elegant-gray-dark)), hsl(var(--elegant-gray)));
+    --shadow-elegant: 0 20px 60px -10px hsl(0 0% 0% / 0.4);
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
 
 @layer base {
   * {
-    border-color: hsl(var(--border));
+    @apply border-border;
   }
 
   body {
-    background-color: #000;
-  color: var(--foreground);
-  font-family: 'Montserrat', sans-serif;
-  }
-}
-
-.neon-text {
-  color: white;
-  font-weight: 700;
-  text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #ff71c6, 0 0 82px #ff71c6, 0 0 92px #ff71c6, 0 0 102px #ff71c6, 0 0 151px #ff71c6;
-}
-
-.neon-purple {
-  color: white;
-  font-weight: 700;
-  text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #9b41ff, 0 0 82px #9b41ff, 0 0 92px #9b41ff, 0 0 102px #9b41ff, 0 0 151px #9b41ff;
-}
-
-.neon-green {
-  color: #7FFF00;
-  font-weight: 700;
-  text-shadow: 0 0 7px #7FFF00, 0 0 10px #7FFF00, 0 0 21px #7FFF00;
-}
-
-.neon-box {
-  box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #ff71c6, 0 0 20px #ff71c6, 0 0 25px #ff71c6, 0 0 30px #ff71c6, 0 0 35px #ff71c6;
-}
-
-.dripping-text {
-  position: relative;
-}
-
-.dripping-text:after {
-  content: '';
-  position: absolute;
-  bottom: -8px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0.25rem;
-  height: 0.75rem;
-  background-color: #ff71c6;
-  border-bottom-left-radius: 0.5rem;
-  border-bottom-right-radius: 0.5rem;
-  animation: drip 1s infinite alternate;
-}
-
-.anime-girl-bubble {
-  position: relative;
-}
-
-.anime-girl-bubble:after {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: -10px;
-  width: 1rem;
-  height: 1rem;
-  background-color: white;
-  transform: rotate(45deg);
-}
-
-.dark-border-box {
-  border: 1px solid #1f2937;
-  border-radius: 0.5rem;
-}
-
-.button-glow {
-  animation: button-glow 2s infinite alternate;
-}
-
-@keyframes button-glow {
-  from {
-    box-shadow: 0 0 5px #ff71c6, 0 0 10px #ff71c6;
-  }
-  to {
-    box-shadow: 0 0 10px #ff71c6, 0 0 20px #ff71c6, 0 0 30px #ff71c6;
+    @apply bg-background text-foreground;
   }
 }
