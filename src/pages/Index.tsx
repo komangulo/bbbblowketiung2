@@ -18,6 +18,11 @@ const Index: React.FC = () => {
       </header>
       
       <main className="w-full px-0 pb-8 flex flex-col items-center">
+        {/* H1 Principal Visible */}
+        <h1 className="text-3xl md:text-4xl font-bold text-center my-8 text-white">
+          BLOWKETING.COM - La mejor agencia de marketing para creadoras de contenido en Madrid
+        </h1>
+        
         {/* Header Image Section */}
         <section className="w-full mb-6 text-center">
           <img
@@ -159,7 +164,7 @@ const Index: React.FC = () => {
         
         {/* Model of the Year */}
         <section className="w-full mb-10 text-center">
-          <h2 className="text-3xl font-extrabold uppercase mb-6">MODEL OF THE YEAR</h2>
+          <h2 className="text-3xl font-extrabold uppercase mb-6">MODEL OF THE YEAR BLOWKETING.COM</h2>
           <div className="mb-6 flex justify-center items-center">
             <div className="relative" style={{ width: 260, height: 260 }}>
               <img
@@ -245,7 +250,7 @@ const Index: React.FC = () => {
         
         {/* Casting Section */}
         <section className="w-full mb-10 text-center max-w-2xl mx-auto px-4">
-          <h2 className="text-xl font-bold uppercase mb-2" style={{ fontSize: '26.67px', lineHeight: '37px' }}>CASTING</h2>
+          <h2 className="text-xl font-bold uppercase mb-2" style={{ fontSize: '26.67px', lineHeight: '37px' }}>CASTING BLOWKETING.COM</h2>
           <h3 className="text-lg mb-6 text-gray-300" style={{ fontSize: '26.67px', lineHeight: '37px' }}>
             ¿ERES CREADORA DE CONTENIDO? CONTACTANOS
           </h3>

@@ -54,9 +54,12 @@ const Blow4Keting: React.FC = () => {
               the model's platform and/or speaking directly with her via chat.
             </p>
           </div>
-          <div style={{ position: 'absolute', top: 22.6518, left: 164.527, width: 334.947, height: 68.0167, transform: 'scale(0.380184)', color: '#d9d9d9', fontSize: 149.52, lineHeight: '149px', textTransform: 'uppercase', textShadow: '0 0 2.47px #ddd, 0 0 12.36px #ddd, 0 0 37.08px #ddd' }}>
-            <span style={{ color: '#d9d9d9' }}>BJ X </span><span style={{ color: '#ff66c4' }}>MKt</span>
-          </div>
+          <h1 style={{ position: 'absolute', top: 22.6518, left: 164.527, width: 334.947, height: 68.0167, transform: 'scale(0.380184)', color: '#d9d9d9', fontSize: 149.52, lineHeight: '149px', textTransform: 'uppercase', textShadow: '0 0 2.47px #ddd, 0 0 12.36px #ddd, 0 0 37.08px #ddd', margin: 0, padding: 0, fontWeight: 'normal' }}>
+            <span style={{ color: '#d9d9d9' }}>BJ X </span><span style={{ color: '#ff66c4' }}>MKT</span>
+          </h1>
+          <h2 style={{ position: 'absolute', top: 100, left: 164.527, width: 334.947, height: 68.0167, transform: 'scale(0.380184)', color: '#d9d9d9', fontSize: 149.52, lineHeight: '149px', textTransform: 'uppercase', textShadow: '0 0 2.47px #ddd, 0 0 12.36px #ddd, 0 0 37.08px #ddd', margin: 0, padding: 0, fontWeight: 'normal' }}>
+            <span style={{ color: '#d9d9d9' }}>BJ X </span><span style={{ color: '#ff66c4' }}>MKT</span>
+          </h2>
         </div>
       </section>
       {/* Sección 3: GIF y texto "Premium videos on..." */}
@@ -119,7 +122,7 @@ const Blow4Keting: React.FC = () => {
           <img src="https://blowketing.com/_assets/media/ba445395e7eab5332e8817d61126890c.png" alt="model-year" style={{ position: 'absolute', top: 221, left: 198, width: 314, height: 80 }} />
           <img src="https://blowketing.com/_assets/media/0d575e2f97d06582c9799d0a649148dd.png" alt="model-avatar" style={{ position: 'absolute', top: 69, left: 271, width: 121, height: 121, borderRadius: '50%' }} />
           <div style={{ position: 'absolute', top: 25, left: 76, width: 512, height: 24, transform: 'scale(0.486091)', color: '#fff', fontWeight: 400, fontSize: 41.33, lineHeight: '57px', textAlign: 'center' }}>
-            MODEL OF THE YEAR
+            MODEL OF THE YEAR BLOWKETING.COM
           </div>
           <div style={{ position: 'absolute', top: 201, left: 79, width: 506, height: 34, transform: 'scale(0.486091)', color: '#fff', fontWeight: 400, fontSize: 38.08, lineHeight: '53px', textAlign: 'center' }}>
             Lauumiau
@@ -205,7 +208,7 @@ const Blow4Keting: React.FC = () => {
       </section>
       {/* BLOQUE: Casting */}
       <section style={{ width: 340, margin: '32px auto 0', textAlign: 'center' }}>
-        <div style={{ fontWeight: 700, color: '#fff', fontSize: 15, marginBottom: 8 }}>CASTING</div>
+        <div style={{ fontWeight: 700, color: '#fff', fontSize: 15, marginBottom: 8 }}>CASTING BLOWKETING.COM</div>
         <div style={{ fontSize: 13, color: '#fff', marginBottom: 8 }}>¿ERES CREADORA DE CONTENIDO?</div>
         <a href="#" style={{ display: 'inline-block', background: '#ff66c4', color: '#fff', fontWeight: 700, borderRadius: 8, padding: '8px 24px', textDecoration: 'none', boxShadow: '0 2px 8px #ff66c488', transition: 'background 0.2s' }}>CONTACTAR</a>
       </section>
